@@ -11,6 +11,9 @@ class ChatSystem
 
   # 送信時の処理
   sendMessage: () =>
+    # Notification の許可
+    Notification.requestPermission()
+
     name = $("#name").val()
     msg = $("#comment").val()
     
@@ -22,6 +25,9 @@ class ChatSystem
     msg_li.html "#{msg["name"]}: #{msg["body"]}"
 
     $("#chat_area").append msg_li
+
+    # 通知
+    notification = new Notification "#{msg.name}: #{msg.body}"
 
   # 接続処理
   connect: (url) =>
